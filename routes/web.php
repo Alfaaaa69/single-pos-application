@@ -94,3 +94,4 @@ Route::get('/jalankan-migrasi', function() {
     }
 });
 
+
