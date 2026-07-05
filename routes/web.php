@@ -84,3 +84,13 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/jalankan-migrasi', function() {
+    try {
+        \Artisan::call('migrate:fresh', ['--seed' => true]);
+        return 'Migrasi dan Seeding database berhasil!';
+    } catch (\Exception $e) {
+        return 'Gagal: ' . $e->getMessage();
+    }
+});
+
