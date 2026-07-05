@@ -94,4 +94,14 @@ Route::get('/jalankan-migrasi', function() {
     }
 });
 
+if (isset($_ENV['VERCEL']) || env('VERCEL') || env('NOW_REGION')) {
+    Route::get('/products/{filename}', function ($filename) {
+        $path = '/tmp/products/' . $filename;
+        if (!file_exists($path)) {
+            abort(404);
+        }
+        return response()->file($path);
+    });
+}
+
 

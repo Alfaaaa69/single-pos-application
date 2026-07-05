@@ -49,7 +49,7 @@ return [
 
         'products' => [
             'driver' => 'local',
-            'root' => public_path('products'),
+            'root' => (isset($_ENV['VERCEL']) || env('VERCEL') || env('NOW_REGION')) ? '/tmp/products' : public_path('products'),
             'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/products',
             'visibility' => 'public',
             'throw' => false,
